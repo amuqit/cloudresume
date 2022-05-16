@@ -16,6 +16,19 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
       BucketName: abdulmuqit-resume
+  MyRoute53Record:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: Z087043918Z5820Y1DSL4
+      RecordSets:
+      - Name: abdulmuqit.com
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName:
+            Fn::GetAtt:
+            - MyDistribution
+            - DomainName
   MyDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
